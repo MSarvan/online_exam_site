@@ -7,6 +7,16 @@
   box-sizing: border-box;
   overflow-y: scroll;
   background: #e5e5e5;
+  z-index: 1;
+  position: relative;
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+  }
 
   .exam-title {
     width: 100%;
@@ -126,5 +136,14 @@
       font-weight: 700;
       cursor: pointer;
     }
+  }
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    z-index: 3;
   }
 }

@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import "./createexam.scss";
+import { useNavigate } from "react-router-dom";
 
 const CreateExam = () => {
   const [divCount, setDivCount] = useState(0);
+  const [isloading, setIsloading] = useState(false);
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
     setDivCount(divCount + 1);
+  };
+
+  const handleSubmit = () => {
+    setIsloading(true);
+    setTimeout(() => {
+      setIsloading(false);
+      navigate("/");
+    }, 3000);
   };
 
   const renderDivs = () => {
@@ -14,7 +25,7 @@ const CreateExam = () => {
       divs.push(
         <div className="question-container" key={i}>
           <div className="question">
-            <div>{i+1}.</div>
+            <div>{i + 1}.</div>
             <div className="qn-txt">
               <input type="text" placeholder="Enter your question.." />
             </div>
@@ -56,6 +67,7 @@ const CreateExam = () => {
 
   return (
     <div className="createexam">
+      <div className={isloading ? "overlay" : ""}></div>
       <div className="exam-title">
         <input type="text" placeholder="Enter the name of the Exam.." />
       </div>
@@ -66,8 +78,19 @@ const CreateExam = () => {
         <button className="buttons" onClick={handleButtonClick}>
           Add Question
         </button>
-        <button className="buttons">Submit</button>
+        <button className="buttons" onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
+
+      {isloading && (
+        <div className="loader">
+          <img
+            src="https://cdn.dribbble.com/users/1238709/screenshots/4069900/media/5c33ad04385941a4968196a7445294eb.gif"
+            alt="loading"
+          />
+        </div>
+      )}
     </div>
   );
 };
