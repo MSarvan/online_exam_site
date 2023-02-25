@@ -1,11 +1,13 @@
-import './App.css';
-import Routess from './Routess';
-
+import "./App.css";
+import { ExamContextProvider } from "./Context/ExamContext";
+import Routess from "./Routess";
 
 function App() {
   return (
     <div className="App">
-      <Routess/>
+      <ExamContextProvider>
+        <Routess />
+      </ExamContextProvider>
     </div>
   );
 }
